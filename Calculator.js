@@ -8,8 +8,6 @@ function Calculator (){
         return op;
     }
 
-
-
     function add(){
         return operation("+");
     }
@@ -23,12 +21,13 @@ function Calculator (){
         return operation("/");
     }
     function equals(){
+        var result="";
         for(var i=0;i<mas.length;i++){
-            if(mas[i]!=="-"&&mas[i]!=="+"&&mas[i]!=="*"&&mas[i]!=="/")mas[i]=parseFloat(mas[i]);
-            var result=546-45646+65464+46544;
+            result+=mas[i];
         }
-        mas=0;
+        mas=[];
         cur=0;
+        return eval(result);
     }
     function clear(){
         cur="0";
