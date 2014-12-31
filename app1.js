@@ -36,10 +36,7 @@ Ext.onReady(function () {
                     height: 40,
                     width: 40,
                     text: '7',
-                    margins: 5,
-                    handler: function() {
-                        calculator.number(this.text);
-                    }
+                    margins: 5
                 }, {
                     xtype: 'button',
                     height: 40,
