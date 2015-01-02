@@ -21,6 +21,7 @@ function Calculator (){
         return operation("/");
     }
     function equals(){
+        mas.push(cur)
         var result="";
         for(var i=0;i<mas.length;i++){
             result+=mas[i];
@@ -35,15 +36,25 @@ function Calculator (){
         return cur;
     }
     function back(){
-        if(cur!=="0")cur.pop();
         if(cur.length==1)cur="0";
+        else cur = cur.substr(0, cur.length - 1);
         return cur;
     }
     function dot(){
-        if(cur.search(".")<0) cur.push(".");
+        if(cur.search(".") < 0) cur.push(".");
     }
     function number(a){
-        cur.push(a);
+        cur = cur === "0" ? a : cur + a;
+        return cur;
+    }
+    
+    return {
+        operation: operation,
+        dot: dot,
+        number: number,
+        back: back,
+        clear: clear,
+        equals: equals
     }
 };
 

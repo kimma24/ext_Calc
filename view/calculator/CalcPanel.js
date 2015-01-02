@@ -1,5 +1,19 @@
 var calculator = new Calculator()
 
+var updateDisplay = function(text) {
+    var display = Ext.getCmp('display');
+    display.setValue(text);
+    console.log(display);
+}
+
+
+var numberHandler = function(button) {
+    updateDisplay(calculator.number(button.text));
+}
+
+var operationHandler = function(button) {
+    updateDisplay(calculator.operation(button.text))
+}
 
 Ext.define('view.calculator.CalcPanel', {
     extend: 'Ext.form.Panel',
@@ -39,9 +53,7 @@ Ext.define('view.calculator.CalcPanel', {
                 margin: 6,
                 height: 40,
                 width: 40,
-                handler: function(button){
-                    calculator.number(button.text)
-                }
+                handler: numberHandler
 
             }, items: [{
                 text: '7'
@@ -51,14 +63,12 @@ Ext.define('view.calculator.CalcPanel', {
                 text: '9'
             }, {
                 text: '/',
-                handler: function(){
-                    Ext.get("display").value=calculator.div()
-                }
+                handler: operationHandler
             }, {
                 text: 'ce',
                 handler: function(){
                     console.log(calculator);
-                    Ext.get("display").value=calculator.clear()
+                    updateDisplay(calculator.clear())
                 }
             }, {
                 text: '4'
@@ -68,13 +78,11 @@ Ext.define('view.calculator.CalcPanel', {
                 text: '6'
             }, {
                 text: '*',
-                handler: function(){
-                    calculator.mult()
-                }
+                handler: operationHandler
             }, {
                 text: '<-',
-                handler: function(){
-                    calculator.back()
+                handler: function() {
+                    updateDisplay(calculator.back())
                 }
             }]
         };
@@ -89,9 +97,7 @@ Ext.define('view.calculator.CalcPanel', {
                     margin: 6,
                     height: 40,
                     width: 40,
-                    handler: function(button){
-                        calculator.number(button.text)
-                    }
+                    handler: numberHandler
                 },
                 items: [{
                     text: '1'
@@ -101,9 +107,7 @@ Ext.define('view.calculator.CalcPanel', {
                     text: '3'
                 }, {
                     text: '-',
-                    handler: function(){
-                        calculator.min()
-                    }
+                    handler: operationHandler
                 }, {
                     xtype: 'splitter'
                 }, {
@@ -112,13 +116,11 @@ Ext.define('view.calculator.CalcPanel', {
                 }, {
                     text: '.',
                     handler: function(){
-                        calculator.dot()
+                        updateDisplay(calculator.dot())
                     }
                 }, {
                     text: '+',
-                    handler: function(){
-                        calculator.add()
-                    }
+                    handler: operationHandler
                 }]
             }, {
                 xtype: 'button',
@@ -127,7 +129,7 @@ Ext.define('view.calculator.CalcPanel', {
                 text: '=',
                 margin: '5 5 5 5',
                 handler: function(){
-                    calculator.equals()
+                    updateDisplay(calculator.equals())
                 }
             }]
         };
