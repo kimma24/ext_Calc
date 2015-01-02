@@ -3,7 +3,7 @@ var calculator = new Calculator()
 var updateDisplay = function(text) {
     var display = Ext.getCmp('display');
     display.setValue(text);
-    console.log(display);
+
 }
 
 

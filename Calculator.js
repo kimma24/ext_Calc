@@ -27,8 +27,8 @@ function Calculator (){
             result+=mas[i];
         }
         mas=[];
-        cur=0;
-        return eval(result);
+        cur=eval(result).toString();
+        return cur;
     }
     function clear(){
         cur="0";
@@ -41,7 +41,8 @@ function Calculator (){
         return cur;
     }
     function dot(){
-        if(cur.search(".") < 0) cur.push(".");
+         if(cur.indexOf(".")==-1)cur+=".";
+         return cur;
     }
     function number(a){
         cur = cur === "0" ? a : cur + a;
